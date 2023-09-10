@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ILoginRequest } from 'src/app/models/authentication.model';
-import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +30,8 @@ export class LoginPage {
   constructor(
     public fb: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private loadingService: LoadingService
   ) {
     this.loginForm = this.fb.group({
       login: [null, Validators.required],
@@ -41,7 +44,9 @@ export class LoginPage {
       ...this.loginForm.value
     };
 
-    this.authenticationService.login(request)
+    const loginLoading$ = this.authenticationService.login(request);
+
+    this.loadingService.showLoaderUntilCompleted(loginLoading$)
       .subscribe({
         next: () => this.router.navigateByUrl('/'),
         error: (e) => console.error(e)

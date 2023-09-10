@@ -1,6 +1,6 @@
 <mat-sidenav-container fullscreen>
 
-  <mat-sidenav #sidemenu>
+  <mat-sidenav #sidemenu (click)="sidemenu.close()">
     <mat-nav-list>
       <a mat-list-item routerLink="/">
         <mat-icon matListItemIcon>home</mat-icon>
@@ -32,5 +32,7 @@
   <div class="container">
     <router-outlet></router-outlet>
   </div>
+
+  <app-loading></app-loading>
 
 </mat-sidenav-container>

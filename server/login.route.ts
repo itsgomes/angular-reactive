@@ -7,8 +7,10 @@ export function Login(req: Request, res: Response) {
 
   const user = authenticate(login, password);
 
-  if (user)
-    res.status(200).json({ login: user.login });
-  else
-    res.sendStatus(403);
+  setTimeout(() => {
+    if (user)
+        res.status(200).json({ login: user.login });
+    else
+      res.sendStatus(403);
+  }, 1000);
 }

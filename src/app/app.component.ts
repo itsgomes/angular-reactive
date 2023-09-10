@@ -7,7 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { AuthenticationService } from './services/authentication.service';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +23,11 @@ import { AuthenticationService } from './services/authentication.service';
     MatIconModule, 
     MatListModule, 
     MatSidenavModule, 
-    MatToolbarModule
+    MatToolbarModule,
+    LoadingComponent
+  ],
+  providers: [
+    LoadingService
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
