@@ -9,8 +9,8 @@ export function Login(req: Request, res: Response) {
 
   setTimeout(() => {
     if (user)
-        res.status(200).json({ login: user.login });
+      res.status(200).json({ login: user.login });
     else
-      res.sendStatus(403);
+      res.status(403).send('Login or password is incorrect.');
   }, 1000);
 }

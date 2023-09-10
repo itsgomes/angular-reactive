@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ILoginRequest } from 'src/app/models/authentication.model';
@@ -19,7 +20,8 @@ import { LoadingService } from 'src/app/services/loading.service';
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss']
@@ -31,7 +33,8 @@ export class LoginPage {
     public fb: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
       login: [null, Validators.required],
@@ -49,7 +52,7 @@ export class LoginPage {
     this.loadingService.showLoaderUntilCompleted(loginLoading$)
       .subscribe({
         next: () => this.router.navigateByUrl('/'),
-        error: (e) => console.error(e)
+        error: (e) => this.snackBar.open(e.error, 'Try again', {duration: 2000})
       });
   }
-}
+} 
