@@ -10,7 +10,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AuthenticationService } from './services/authentication.service';
 import { LoadingComponent } from './components/loading/loading.component';
-import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +24,6 @@ import { LoadingService } from './services/loading.service';
     MatSidenavModule, 
     MatToolbarModule,
     LoadingComponent
-  ],
-  providers: [
-    LoadingService
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

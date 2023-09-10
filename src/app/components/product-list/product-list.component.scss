@@ -1,0 +1,29 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+
+  .list-item {
+    min-width: 400px;
+
+    p {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    &-extra {
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    &-buttons {
+      margin-top: auto;
+    }
+  }
+}

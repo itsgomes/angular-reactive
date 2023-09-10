@@ -1,0 +1,26 @@
+<div class="list">
+  <mat-card class="list-item" *ngFor="let product of products; trackBy: identify">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img mat-card-image src="{{product.thumbnail}}" alt="Photo of the product" height="40px" width="40px">
+      </div>
+      <mat-card-title>{{product.title}}</mat-card-title>
+      <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="{{product.thumbnail}}" alt="Photo of the product"> -->
+    <mat-card-content>
+      <p>
+        {{product.description}}
+      </p>
+      <div class="list-item-extra">
+      <span>Price: {{product.price}}</span>
+      <span>Discount: {{product.discountPercentage}}</span>
+      <span>Rating: {{product.rating}}</span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions [align]="'end'" class="list-item-buttons">
+      <button mat-button>EDIT</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
