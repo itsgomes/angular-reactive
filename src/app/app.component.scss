@@ -1,0 +1,26 @@
+mat-toolbar {
+  height: var(--toolbar-height);
+
+  span {
+    margin-left: 1rem;
+  }
+}
+
+.user-profile {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.54);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  height: calc(100% - var(--toolbar-height));
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

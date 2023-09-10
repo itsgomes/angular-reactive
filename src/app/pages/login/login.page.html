@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Enter with your credentials to access our platform.</h1>
+  <form [formGroup]="loginForm" (submit)="onSubmit()">
+    <div class="form-field">
+      <mat-form-field>
+        <mat-label>Enter your login</mat-label>
+        <input matInput formControlName="login">
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+    </div>
+
+    <div class="form-buttons">
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Submit</button>
+    </div>
+  </form>
+</div>
