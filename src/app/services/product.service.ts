@@ -35,8 +35,8 @@ export class ProductService {
   /**
    * Get product by price range (min and max).
    *
-   * @param min - The minimal number to filter
-   * @param y - The max number to filter, as default is 9999.
+   * @param min - The minimal number to filter.
+   * @param max - The max number to filter, as default is 9999.
    * @returns Returns an observable filtered by the range of two numbers.
    *
    */
