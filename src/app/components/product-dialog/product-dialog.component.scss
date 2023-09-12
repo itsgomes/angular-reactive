@@ -1,0 +1,33 @@
+h1 {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.container {
+  padding: 1rem;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.form-field {
+  &-1 {
+    flex: 1;
+  }
+
+  &-100 {
+    flex: 1 1 100%;
+  }
+}

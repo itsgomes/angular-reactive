@@ -1,3 +1,4 @@
-<div *ngIf="(productService.products$ | async) as products" class="container">
-  <app-product-list [products]="products"></app-product-list>
+<div *ngIf="productService.products$ | async" class="container">
+  <app-product-list [products]="lowCostProducts$ | async" title="Low Cost Products (under $500)" [editable]="authenticationService.isLoggedIn$ | async"></app-product-list>
+  <app-product-list [products]="highCostProducts$ | async" title="High Cost Products" [editable]="authenticationService.isLoggedIn$ | async"></app-product-list>
 </div>

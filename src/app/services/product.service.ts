@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable, map, shareReplay, tap } from "rxjs";
+import { BehaviorSubject, Observable, catchError, map, shareReplay, tap, throwError } from "rxjs";
 
-import { IProduct } from "../models/product.model";
 import { LoadingService } from "./loading.service";
+import { IProduct, sortProductByPrice } from "../models/product.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +11,56 @@ import { LoadingService } from "./loading.service";
 export class ProductService {
   private subject = new BehaviorSubject<IProduct[]>(null!);
 
-  public products$ = this.subject.asObservable();
+  public products$: Observable<IProduct[]> = this.subject.asObservable();
 
   constructor(
     private http: HttpClient,
     private loadingService: LoadingService
   ) {
     this.loadAllProducts();
+  }
+
+  /**
+   * Get product by price range (min and max).
+   *
+   * @param min - The minimal number to filter
+   * @param y - The max number to filter, as default is 9999.
+   * @returns Returns an observable filtered by the range of two numbers.
+   *
+   */
+  public getProductsByPriceRange(min: number, max: number = 9999): Observable<IProduct[]> {
+    return this.products$
+      .pipe(
+        map(products => products
+          .filter(product => product.price >= min && product.price <= max)
+          .sort(sortProductByPrice)
+        )
+      );
+  }
+
+  public saveProduct(productId: number, changes: Partial<IProduct>): Observable<any> {
+    return this.http.put(`/api/products/${productId}`, changes)
+      .pipe(
+        catchError(err => throwError(() => new Error(err))),
+        tap(() => this.onSaveProduct(productId, changes)),
+        shareReplay()
+      );
+  }
+
+  private onSaveProduct(productId: number, changes: Partial<IProduct>): void {
+    const products = this.subject.getValue();
+    const index = products.findIndex(p => p.id == productId);
+
+    const newProduct = {
+      ...products[index],
+      ...changes
+    };
+
+    const newProducts: IProduct[] = products.slice(0);
+
+    newProducts[index] = newProduct;
+
+    this.subject.next(newProducts);
   }
 
   private loadAllProducts(): void {

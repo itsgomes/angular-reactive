@@ -18,3 +18,19 @@ export function GetProductById(req: Request, res: Response) {
       res.status(403).send('No one product was found with this id.');
   });
 }
+
+export function SaveProductByid(req: Request, res: Response) {
+  const id = req.params['id'];
+  const changes = req.body;
+
+  const newProduct = {
+    ...PRODUCTS[id],
+    ...changes
+  };
+
+  PRODUCTS[id] = newProduct;
+
+  setTimeout(() => {
+    res.status(200).json(PRODUCTS[id]);
+  }, 1000);
+}
