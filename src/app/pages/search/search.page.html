@@ -1,0 +1,39 @@
+<div class="container">
+  <mat-form-field class="search-bar">
+    <input matInput placeholder="Type anything to filter products title" #searchInput autocomplete="off">
+  </mat-form-field>
+
+  <button class="search" mat-raised-button color="primary" (click)="onSearch(searchInput.value)" >
+    <mat-icon>search</mat-icon>
+    Search
+  </button>
+
+    <ng-container  *ngIf="!activeProduct; else detail">
+        <ng-container *ngIf="(searchResults$ | async) as products">
+            <table class="product-table mat-elevation-z7">
+                <thead>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                </thead>
+
+                <tr class="product-row" *ngFor="let product of products"
+                    (click)="openProductDetail(product)">
+                    <td class="title-cell">{{product.title}}</td>
+                    <td class="description-cell">{{product.description}}</td>
+                    <td class="price-cell">{{product.price}}</td>
+                </tr>
+            </table>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #detail>
+        <button mat-raised-button class="back-btn" (click)="backToSearchState()">
+            <mat-icon>arrow_back_ios</mat-icon>
+            Back to Search
+        </button>
+
+        <app-product [product]="activeProduct"></app-product>
+    </ng-template>
+
+</div>

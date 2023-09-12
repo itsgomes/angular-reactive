@@ -1,0 +1,18 @@
+<div class="container mat-elevation-z7" *ngIf="product">
+  <div class="product-header">
+    <h1>{{product.title}}</h1>
+    <span>Category: {{product.category}}</span>
+    <span>Brand: {{product.brand}}</span>
+  </div>
+
+  <div class="product-info">
+    <img [src]="product.images[0]">
+    {{product.description}}
+  </div>
+
+  <div class="product-values">
+    <span>Price: {{product.price}}</span>
+    <span>Discount: {{product.discountPercentage}}</span>
+    <span>Rating: {{product.rating}}</span>
+  </div>
+</div>

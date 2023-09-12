@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 60%;
+  padding: 1rem;
+  margin: auto;
+}
+
+.search-bar,
+.back-btn {
+  margin-top: 20px;
+}
+
+.product-table {
+  border-radius: 6px;
+  min-height: 200px;
+  margin-top: 10px;
+
+  tr {
+    height: 60px;
+  }
+
+  td {
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  th {
+    color: rgba(0, 0, 0, 0.54);
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .product-row {
+    cursor: pointer;
+  }
+}

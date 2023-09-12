@@ -6,6 +6,10 @@
         <mat-icon matListItemIcon>home</mat-icon>
         <span matListItemLine>Home</span>
       </a>
+      <a mat-list-item routerLink="/search">
+        <mat-icon matListItemIcon>search</mat-icon>
+        <span matListItemLine>Search products</span>
+      </a>
       <a *ngIf="authenticationService.isLoggedOut$ | async" mat-list-item routerLink="/login">
         <mat-icon matListItemIcon>account_circle</mat-icon>
         <span matListItemLine>Login</span>

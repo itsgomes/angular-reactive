@@ -20,6 +20,18 @@ export class ProductService {
     this.loadAllProducts();
   }
 
+  public searchProduct(query: string): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>('/api/products', {
+      params: {
+        filter: query,
+        pageSize: "30"
+      }
+    }).pipe(
+      map(response => response ['payload']),
+      shareReplay()
+    );
+  }
+
   /**
    * Get product by price range (min and max).
    *
