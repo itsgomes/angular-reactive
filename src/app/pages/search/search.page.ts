@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
+import { Observable, Subscription, debounceTime, fromEvent } from "rxjs";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -26,15 +26,30 @@ import { ProductComponent } from "src/app/components/product/product.component";
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss']
 })
-export class SearchPage {
+export class SearchPage implements AfterViewInit, OnDestroy {
+  @ViewChild('searchInput')
+  public searchInput: ElementRef;
 
+  public searchSubscription: Subscription;
   public searchResults$!: Observable<IProduct[]>;
   public activeProduct: IProduct;
 
   constructor(
     private productService: ProductService,
     private loadingService: LoadingService
-  ) {}
+  ) { }
+
+  public ngAfterViewInit(): void {
+    this.searchSubscription = fromEvent(this.searchInput.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(1000)
+      )
+      .subscribe(() => this.onSearch(this.searchInput.nativeElement.value));
+  }
+
+  public ngOnDestroy(): void {
+    this.searchSubscription.unsubscribe();
+  }
 
   public onSearch(query: string): void {
     this.searchResults$ = this.loadingService.showLoaderUntilCompleted(

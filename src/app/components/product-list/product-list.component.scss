@@ -1,36 +1,31 @@
 h1 {
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 1rem;
   text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  color: #FFFFFF;
+  background: #3f51b5;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-
-  > * {
-    flex: 1;
+table {  
+  .table-item-currency {
+    text-align: center;
   }
 
-  .list-item {
-    min-width: 400px;
+  .action-btn {
+    display: flex;
+    align-items: center;
+  }
 
-    p {
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
+  .table-item-btn, button {
+    text-align: right;
+  }
+}
 
-    &-extra {
-      font-size: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-      color: rgba(0, 0, 0, 0.65);
-    }
-
-    &-buttons {
-      margin-top: auto;
-    }
+@media (max-width: 700px) {
+  .table-item-description {
+    display: none;
   }
 }

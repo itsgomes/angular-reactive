@@ -1,42 +1,33 @@
-<mat-sidenav-container fullscreen>
+<header>
+  <h1>{{title}}</h1>
 
-  <mat-sidenav #sidemenu (click)="sidemenu.close()">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/">
-        <mat-icon matListItemIcon>home</mat-icon>
-        <span matListItemLine>Home</span>
-      </a>
-      <a mat-list-item routerLink="/search">
-        <mat-icon matListItemIcon>search</mat-icon>
-        <span matListItemLine>Search products</span>
-      </a>
-      <a *ngIf="authenticationService.isLoggedOut$ | async" mat-list-item routerLink="/login">
-        <mat-icon matListItemIcon>account_circle</mat-icon>
-        <span matListItemLine>Login</span>
-      </a>
-      <a *ngIf="authenticationService.isLoggedIn$ | async" mat-list-item routerLink="/" (click)="authenticationService.logout()">
-        <mat-icon matListItemIcon>exit_to_app</mat-icon>
-        <span matListItemLine>Logout</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      </li>
+      <li>
+        <a routerLink="/search" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Products</a>
+      </li>
+    </ul>
+  </nav>
 
-  <mat-toolbar color="primary">
-    <button mat-icon-button (click)="sidemenu.open('mouse')">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>{{title}}</span>
-    <span class="spacer"></span>
+  <div class="header-btn">
     <button mat-flat-button *ngIf="(authenticationService.user$ | async) as user">      
       <mat-icon>account_circle</mat-icon>
       {{user.login}}
     </button>
-  </mat-toolbar>
-
-  <div class="container">
-    <router-outlet></router-outlet>
+    <button mat-icon-button *ngIf="authenticationService.isLoggedOut$ | async" routerLink="/login">
+      <mat-icon>login</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="authenticationService.isLoggedIn$ | async" (click)="authenticationService.logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
   </div>
+</header>
 
-  <app-loading></app-loading>
+<main>
+  <router-outlet></router-outlet>
+</main>
 
-</mat-sidenav-container>
+<app-loading></app-loading>

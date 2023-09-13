@@ -1,26 +1,30 @@
 <h1>{{title}}</h1>
-<div class="list">
-  <mat-card class="list-item" *ngFor="let product of products; trackBy: identify">
-    <mat-card-header>
-      <div mat-card-avatar>
-        <img mat-card-image src="{{product.thumbnail}}" alt="Photo of the product" height="40px" width="40px">
-      </div>
-      <mat-card-title>{{product.title}}</mat-card-title>
-      <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        {{product.description}}
-      </p>
-      <div class="list-item-extra">
-      <span>Price: {{product.price}}</span>
-      <span>Discount: {{product.discountPercentage}}</span>
-      <span>Rating: {{product.rating}}</span>
-      </div>
-    </mat-card-content>
-    <mat-card-actions [align]="'end'" class="list-item-buttons">
-      <button mat-button *ngIf="editable" (click)="editProduct(product)">EDIT</button>
-      <button mat-button>VIEW INFO</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+
+<table>
+  <thead>
+    <th>Product Name</th>
+    <th class="table-item-description">Description</th>
+    <th class="table-item-currency">Discount</th>
+    <th class="table-item-currency">Price</th>
+    <th class="table-item-btn">Actions</th>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let product of products; trackBy: identify">
+      <td>{{product.title}}</td>
+      <td class="table-item-description">{{product.description}}</td>
+      <td class="table-item-currency">${{product.discountPercentage}}</td>
+      <td class="table-item-currency">${{product.price}}</td>
+      <td class="table-item-btn">
+        <div class="action-btn">
+          <button mat-icon-button *ngIf="editable" (click)="editProduct(product)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>info</mat-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

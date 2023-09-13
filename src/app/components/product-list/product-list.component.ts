@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 import { IProduct } from 'src/app/models/product.model';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
@@ -17,10 +18,12 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
     FormsModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
+  host: { 'class' : 'mat-elevation-z2 border-radius-6' }
 })
 export class ProductListComponent {
   @Input()
