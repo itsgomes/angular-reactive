@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -26,7 +26,8 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
   ],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-  host: { 'class' : 'mat-elevation-z2 border-radius-6' }
+  host: { 'class' : 'mat-elevation-z2 border-radius-6' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent {
   @Input()

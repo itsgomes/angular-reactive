@@ -54,7 +54,5 @@ export function SaveProductByid(req: Request, res: Response) {
 
   PRODUCTS[id] = newProduct;
 
-  setTimeout(() => {
-    res.status(200).json(PRODUCTS[id]);
-  }, 1000);
+  res.status(200).json(PRODUCTS[id]);
 }
