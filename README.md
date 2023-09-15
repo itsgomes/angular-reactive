@@ -10,4 +10,4 @@ Run `ng serve --proxy-config ./proxy.json` for a dev server. Navigate to `http:/
 
 ## About
 
-This project is to improve my skills with angular reactive functions. I'm following the Angular Reactive Course from Angular University.
+This project is to improve my skills usin angular reactive functions. I'm following the Angular Reactive Course from Angular University.
