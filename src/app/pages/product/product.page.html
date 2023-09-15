@@ -1,0 +1,19 @@
+<ng-container *ngIf="(productData$ | async) as data">
+  <div class="container">
+    <h2>{{data.product?.title}}</h2>
+
+    <img [src]="data.product.thumbnail" *ngIf="data.product">
+
+    <table class="mat-elevation-z7" *ngIf="data.any.length">
+      <thead>
+        <th>Description</th>
+        <th>Price</th>
+      </thead>
+
+      <tr *ngFor="let product of data.any">
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </table>
+  </div>
+</ng-container>

@@ -50,6 +50,25 @@ export class ProductService {
       );
   }
 
+  public getProductById(productId: number): Observable<IProduct> {
+    return this.http.get<IProduct>(`/api/products/${productId}`)
+      .pipe(
+        shareReplay()
+      );
+  }
+
+  public getProductByIdV2(id: number): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>('/api/products', {
+      params: {
+        productId: id,
+        pageSize: "100"
+      }
+    }).pipe(
+      map(response => response ['payload']),
+      shareReplay()
+    );
+  }
+
   public saveProduct(productId: number, changes: Partial<IProduct>): Observable<any> {
     return this.http.put(`/api/products/${productId}`, changes)
       .pipe(

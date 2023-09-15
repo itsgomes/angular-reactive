@@ -562,7 +562,7 @@ export const USERS = [
 ];
 
 export function findProductById(productId: number) {
-  return Object.values(PRODUCTS).filter(product => product.id == productId);
+  return Object.values(PRODUCTS).filter(product => product.id == productId)[0];
 }
 
 export function authenticate(login: string, password: string) {

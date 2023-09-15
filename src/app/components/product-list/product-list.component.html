@@ -20,7 +20,7 @@
           <button mat-icon-button *ngIf="editable" (click)="editProduct(product)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button>
+          <button mat-icon-button [routerLink]="['/product', product.id]">
             <mat-icon>info</mat-icon>
           </button>
         </div>
